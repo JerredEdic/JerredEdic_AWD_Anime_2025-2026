@@ -23,6 +23,14 @@ class AnimeSeeder extends Seeder{
                 'image' => 'demonSlayer.jpg',
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp
+            ],
+            [
+                'name' => 'Bleach',
+                'description' => 'A normal guy gets dragged into the unseen world as a substitute shinigami',
+                'episodes' => 387,
+                'image' => 'bleach.webp',
+                'created_at' => $currentTimestamp,
+                'updated_at' => $currentTimestamp
             ]
         ]);
     }
