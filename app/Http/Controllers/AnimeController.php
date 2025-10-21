@@ -37,7 +37,7 @@ class AnimeController extends Controller
      */
     public function show(Anime $anime)
     {
-        //
+        return view('animes.show')->with('anime', $anime);
     }
 
     /**
