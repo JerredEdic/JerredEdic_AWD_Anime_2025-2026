@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Anime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AnimeController extends Controller
 {
@@ -21,7 +22,7 @@ class AnimeController extends Controller
      */
     public function create()
     {
-        //
+        return view('animes.create');
     }
 
     /**
@@ -29,7 +30,29 @@ class AnimeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate input
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required|max:500',
+            'episodes' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        //check if the image is uploaded and handle it
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/animes'),$imageName);
+        }
+
+        //create an Anime record in the database
+        Anime::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'episodes' => $request->episodes,
+            'image' => $imageName,
+            'created_at' => now(),
+            'update_at' => now()
+        ]);
     }
 
     /**

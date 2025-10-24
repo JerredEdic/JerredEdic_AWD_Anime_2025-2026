@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('animes.index')" :active="request()->routeIs('animes.index')">
                         {{ __('View All Animes') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('animes.create')" :active="request()->routeIs('animes.create')">
+                        {{ __('Add an Anime') }}
+                    </x-nav-link>
                 </div>
             </div>
 
